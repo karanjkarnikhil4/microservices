@@ -1,10 +1,10 @@
-package com.nikhilkaranjkar.microservices.springcloudconfigserver;
+package com.nikhilkaranjkar.microservices.currencyexchangeservice;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringCloudConfigServerApplicationTests {
+class CurrencyExchangeServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
