@@ -5,6 +5,7 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,13 @@ public class CurrencyConversionController {
 	@Autowired
 	private CurrencyExchangeServiceProxy currencyExchangeServiceProxy;
 	
+	private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
+	
 	@GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversionBean convertCurrency(@PathVariable String from,@PathVariable String to,@PathVariable BigDecimal quantity)
 	{
+		
+		logger.info("{}","currency conversion : non feign");
 		//Feign - Problem 1
 		Map<String ,String> uriVariables = new HashMap<>();
 		uriVariables.put("from", from);
@@ -40,6 +45,7 @@ public class CurrencyConversionController {
 		
 		CurrencyConversionBean currencyConversionBean= currencyExchangeServiceProxy.retrieveExchangeValue(from, to);
 		
+		logger.info("{}","currency conversion : feign");
 //		//Feign - Problem 1
 //		Map<String ,String> uriVariables = new HashMap<>();
 //		uriVariables.put("from", from);
